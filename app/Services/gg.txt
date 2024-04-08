@@ -1,0 +1,13 @@
+ // Get the user's rated cars with their ratings
+            $userRatings = Rating::where('user_id', $userId)->pluck('rating', 'list_car_id');
+
+            // Get the distinct ratings given by the user
+            $userRatings = $userRatings->unique()->values();
+    
+            // Get cars with the same rating as the user's rated cars
+            $recommendedCars = ListCar::whereHas('rating', function ($query) use ($userRatings) {
+                $query->whereIn('rating', $userRatings);
+            })->get();
+    
+            return $recommendedCars;
+    
