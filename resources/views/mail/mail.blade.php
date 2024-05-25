@@ -5,7 +5,7 @@
     <title>mail</title>
 </head>
 <body>
-    <h1>You have a new messsage from Bhadama</h1>
+    <h1>You have a new messsage from Car rental</h1>
     
         <h2>First Name:<span>{{$request['fname']}}<span></h2>
             <h2>Last Name:<span>{{$request['lname']}}<span></h2>

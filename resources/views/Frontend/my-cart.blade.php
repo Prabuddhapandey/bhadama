@@ -85,7 +85,7 @@
   
           <div class= "container">
               <div class="py-7 mt-9">
-              
+              @if ($cars->isNotEmpty())
               <table class="table">
                   <thead class="thead-dark">
                     <tr>
@@ -105,8 +105,8 @@
                     <tr>
                       <th scope="row">{{$key+1}}</th>
                       <td>{{$item->model}}</td>
-                      <td><img src="{{ asset('asset/img/images.jpeg') }}" alt="{{ $item->model }}" width="100px"></td>
-                      <td>@RS: {{$item->listCar->price ?? '10000'}}</td>
+                      <td><img src="{{ asset('asset/img/images.jpeg') }}" alt="" width="100px"></td>
+                      <td>@RS: {{$item->listCar->price ?? ''}}</td>
                       <th >{{$item->date}}</th>
                       <td> <div>
                         <a href="{{route('myCart.edit',$item->id)}}" class="btn btn-icon btn-success btn-xs mr-2 edit" id="" data-toggle="tooltip" title="Edit"><i class="fa fa-pen"></i></a>
@@ -123,7 +123,7 @@
                             
                       </td>
                     </tr>
-                   @endforeach
+                  
                   </tbody>
 
                   <tfoot class="thead-dark">
@@ -131,11 +131,10 @@
                       <th scope="col">Total Price</th>
                       <th scope="col"></th>
                       <th scope="col"></th>
-                      <th scope="col">Total: <span class="pl-2">{{$sum}}</span></th>
+                      <th scope="col">Total: <span class="pl-2">{{$item->listCar->price}}</span></th>
                       <th scope="col"></th>
                       <th scope="col">
-                        <form action= "{{route('stripe.payment')}}" method="get " >
-                 
+                        <form action= "{{route('stripe.payment',$item->id)}}" method="get" >
                         <button type="submit" class="btn-danger rounded py-1">Checkout</button>
                         </form>
                       </th>
@@ -143,9 +142,14 @@
                     </tr>
                   </tfoot>
 
-                </table>
-          
-              
+             </table>
+             @endforeach
+              @else
+              <div>
+              <i class="empty-cart-icon"></i> <p class="empty-cart-message">Your shopping cart is currently empty.</p>
+              <a href="{{route('find.cars')}}">Start shopping and fill it up!</a>
+              </div>
+              @endif
               </div>
               </div>
       </div>

@@ -23,15 +23,16 @@ class MyCartController extends Controller
                                     'bookings.*',
                                      'list_cars.model as model')
                                    ->where('user_id', $userId)
-                                   ->where('status','=','pending')
+                                   ->where('status','pending')
                                      ->get();
         //    dd($this->_data['cars']);
             $this->_data['sum'] = Booking::leftJoin('list_cars','list_cars.id','bookings.car_id')
                            ->select(
                             'status',
                             'price'
-                           )->where('user_id',$userId)->where('status','=','pending')->pluck('price')->sum();
+                           )->where('user_id',$userId)->where('status','pending')->pluck('price')->sum();
                
+                        //    dd( $this->_data['sum']);
        
         }
         else

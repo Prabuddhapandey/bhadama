@@ -68,20 +68,31 @@ $(document).ready(function() {
         e.preventDefault();
         let form = $(this);
         $.ajax({
-            url: '{{ route("stripe.charge") }}?_token{{csrf_token()}}',
+            url: '{{ route("stripe.charge") }}',
             method: 'POST',
             data: form.serialize(),
             success: function(response) {
-                alert('Payment was successful');
-                // Redirect or update the page
-                window.location.href = '/';
+                if (response.success) {
+                    alert('Payment was successful');
+                    // Redirect or update the page
+                    window.location.href = '/';
+                } else {
+                    alert('Payment failed: ' + response.error);
+                }
             },
             error: function(response) {
-                alert('Payment failed,check if field are empty');
+                let errorMessage = 'Payment failed. Please check if the fields are empty or contain invalid data.';
+                if (response.responseJSON && response.responseJSON.error) {
+                    errorMessage = response.responseJSON.error;
+                } else if (response.responseText) {
+                    errorMessage = response.responseText;
+                }
+                alert(errorMessage);
                 console.log(response);
             }
         });
     });
 });
+
 </script>
 @endsection
