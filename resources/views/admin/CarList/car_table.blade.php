@@ -30,19 +30,16 @@
                                     <div class="alert alert-success" role="alert">
                                         {{ session('success') }}
                                     </div>
-                                @endif
-                                @isset($errors)
-    <!-- Your code using $errors variable -->
-
-                                {{-- @if ($errors->any()) --}}
-                                <div class="alert alert-danger">
+                            
+                              @else
+                                <div class="alert-danger">
                                     <ul>
                                         @foreach ($errors->all() as $error)
                                             <li>{{ $error }}</li>
                                         @endforeach
                                     </ul>
                                 </div>
-                                @endisset
+                                @endif
                         
         
                             <div class="table-responsive">
@@ -50,23 +47,23 @@
                                     <thead>
                                         <tr>
                                             <th>First Name</th>
-                                            <th>Last Name</th>
+                                            {{-- <th>Last Name</th> --}}
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Location</th>
                                             <th>Model</th>
                                             <th>Price</th>
-                                            <th>Date</th>
+                                            {{-- <th>Date</th> --}}
                                             <th>Time</th>
-                                            <th>Image</th>
+                                            {{-- <th>Image</th> --}}
                                             <th>Edit</th>
                                              <th>Delete</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>First Name</th>
-                                            <th>Last Name</th>
+                                            <th>Name</th>
+                                            {{-- <th>Last Name</th> --}}
                                             <th>Email</th>
                                             <th>Phone</th>
                                             <th>Location</th>
@@ -75,7 +72,7 @@
                                             <th>Date</th>
 
                                             <th>Time</th>
-                                            <th>Image</th>
+                                            {{-- <th>Image</th> --}}
                                             <th>Edit</th>
                                              <th>Delete</th>
                                         </tr>
@@ -83,17 +80,17 @@
                                     @foreach($profileData as $item)
                                     <tr>
                                         <td>{{$item->fname}}</td>
-                                        <td>{{$item->lname}}</td>
+                                        {{-- <td>{{$item->lname}}</td> --}}
                                         <td>{{$item->email}}</td>
                                         <td>{{$item->phone}}</td>
                                         <td>{{$item->location}}</td>
                                         <td>{{$item->model}}</td>
                                         <td>{{$item->price}}</td>
-                                        <td>{{$item->date}}</td>
+                                        {{-- <td>{{$item->date}}</td> --}}
                                         <td>{{$item->time}}</td>
-                                        <td>
+                                        {{-- <td>
                                             <img src="{{asset('uploads/listcars/'.$item->image)}}" width="70px" height="70px">
-                                        </td>
+                                        </td> --}}
 
                                       
                                         <td><a href="{{ URL::to('AdminCar/' . $item->id . '/edit') }}" class="btn btn-primary btn-sm">Edit</a></td>

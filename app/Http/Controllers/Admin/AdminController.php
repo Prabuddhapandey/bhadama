@@ -18,8 +18,8 @@ class AdminController extends Controller
 
    public function BookingTable(){
 
-    $bookings=Booking::all();
-     return view('admin.BookingList.booking-table');
+     $profileData=Booking::all();
+     return view('admin.bookings.index')->with('profileData',$profileData);
 
 
 

@@ -3,6 +3,7 @@
 @section('main')
 
 <body>
+    
 
     <!-- Page Header Start -->
     <div class="container-fluid page-header">
@@ -105,156 +106,196 @@
 
     
     <!-- Car Booking Start -->
-    <form class="container-fluid pb-5" method="post" action="{{url('/booking/store/')}}" enctype="multipart/form-data">
+    <form class="container-fluid pb-5" method="post" action="{{ url('/booking/store/') }}" enctype="multipart/form-data">
         @csrf
         <div class="container">
-            <div class="row">
 
-                
+                    <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-info" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+            <div class="row">
                 <div class="col-lg-8">
                     <h2 class="mb-6">Car Detail</h2>
+
+
                     <div class="mb-8">
                         <div class="row">
-                            <input type="hidden" name="user_id" value="{{ $userId.''}}">
-
-                            <input type="hidden" name="car_id" value="{{ $cars->id }}">
+                            <input type="hidden" name="user_id" value="{{ old('user_id', $userId) }}">
+                            <input type="hidden" name="car_id" value="{{ old('car_id', $cars->id) }}">
+                            <input type="hidden" name="status" value="pending">
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4"  value="{{$cars->model}}" @readonly(true) required="required">
+                                <label>Model</label>
+                                <input type="text" class="form-control p-4" value="{{ $cars->model }}" readonly>
                             </div>
                             
-                                
-                            
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" value="{{$cars->email}}" @readonly(true)  required="required">
+                                <label>Email</label>
+                                <input type="text" class="form-control p-4" value="{{ $cars->email }}" readonly>
                             </div>
                         </div>
+                        
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4" value="{{$cars->phone}}"  @readonly(true) required="required">
+                                <label>Phone No</label>
+                                <input type="text" class="form-control p-4" value="{{ $cars->phone }}" readonly>
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4"  value="{{$cars->price}}/day" @readonly(true)  required="required">
+                                <label>Price</label>
+                                <input type="text" class="form-control p-4" value="{{ $cars->price }}/day" readonly>
                             </div>
                         </div>
                     </div>
+                    
                     <h2 class="mb-4">Personal Detail</h2>
                     <div class="mb-5">
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" name="fname" class="form-control p-4" placeholder="First Name" required="required">
+                                <input type="text" name="fname" class="form-control p-4" placeholder="First Name" value="{{ old('fname') }}" required>
+                                @error('fname')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" name="lname" class="form-control p-4" placeholder="Last Name" required="required">
+                                <input type="text" name="lname" class="form-control p-4" placeholder="Last Name" value="{{ old('lname') }}" required>
+                                @error('lname')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-6 form-group">
-                                <input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required">
-                            </div>
-                            <div class="col-6 form-group">
-                                <input type="text" name="phone" class="form-control p-4" placeholder="Mobile Number" required="required">
-                            </div>
-                        </div>
-                    </div>
-                    <h2 class="mb-4">Booking Detail</h2>
-                    <div class="mb-5">
                         
                         <div class="row">
                             <div class="col-6 form-group">
-                               
-                                    <input type="text" name="pickup" class="form-control p-4 " placeholder="Pickup Location" />
-                               
+                                <input type="email" name="email" class="form-control p-4" placeholder="Your Email" value="{{ old('email') }}" required>
+                                @error('email')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="col-6 form-group">
-                                <div data-target-input="nearest">
-                                    <input type="text" name="destination" class="form-control p-4" placeholder="Destination Location"  />
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="row">
-                            <div class="col-6 form-group">
-                                <div data-target-input="nearest">
-                                    <input type="text" name="date" class="form-control p-4 " placeholder="Pickup Date"
-                                         />
-                                </div>
-                            </div>
-                            <div class="col-6 form-group">
-                                <div  >
-                                    <input type="text" name="time" class="form-control p-4 " placeholder="Pickup Time"
-                                        />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6 form-group">
-                                <div  id="" data-target-input="nearest">
-                                    <input type="text" name="age" class="form-control p-4 " placeholder="Age"
-                                        />
-                                </div>
-                            </div>
-
-
-                            
-                                <div class="col-6 form-group">
-                                    <div  data-target-input="nearest">
-                                        <input type="text"  name="citizen_id" class="form-control p-4" placeholder="Insert your citizenship id"
-                                             />
-                                    </div>
-                                </div>
-                            
-                            
-                        </div>
-                        <div class="form-group">
-                            <img  id="showImage"  alt="Profile" >
-                            <label for="photo">Upload Yoour Citizenship Photo
                                 
-                            </label>
-                            <input type="file" class="form-control-file" id="image" name="citizen_image">
+                                <input type="text" name="phone" class="form-control p-4" placeholder="Mobile Number" value="{{ old('phone') }}" required>
+                                @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 class="mb-4">Booking Detail</h2>
+                    <div class="mb-5">
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <input type="text" name="pickup" class="form-control p-4" placeholder="Pickup Location" value="{{ old('pickup') }}" required>
+                                @error('pickup')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-6 form-group">
+                                <input type="text" name="destination" class="form-control p-4" placeholder="Destination Location" value="{{ old('destination') }}" required>
+                                @error('destination')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+    
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <input type="text" name="date" class="form-control p-4" placeholder="Pickup Date" value="{{ old('date') }}" required>
+                                @error('date')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-6 form-group">
+                                <input type="text" name="time" class="form-control p-4" placeholder="Pickup Time" value="{{ old('time') }}" required>
+                                @error('time')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-6 form-group">
+                                <input type="text" name="age" class="form-control p-4" placeholder="Age" value="{{ old('age') }}" required>
+                                @error('age')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="col-6 form-group">
+                                <input type="text" name="citizen_id" class="form-control p-4" placeholder="Insert your citizenship ID" value="{{ old('citizen_id') }}" required>
+                                @error('citizen_id')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="image">Upload Your Citizenship Photo</label>
+
+                                <div class="card" style="width: 12rem; height: 10rem">
+                            <img id="showImage" class="card-img-top" alt="" width="100ex" height="150ex">
+                                </div>
+                          
+                            <input type="file" class="form-control-file" id="image" name="citizen_image" width="100px">
+                            @error('citizen_image')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
                 </div>
+                
                 <div class="col-lg-4">
                     <div class="bg-secondary p-5 mb-5">
                         <h2 class="text-primary mb-4">Payment</h2>
+                        
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="esewa">
-                                <label class="custom-control-label" for="esewa">Esewa</label>
-                            </div>
-                        </div>
-                
-                        <div class="form-group">
-                            <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="stripe">
+                                <input type="radio" class="custom-control-input" name="payment" value="Stripe" id="stripe">
                                 <label class="custom-control-label" for="stripe">Stripe</label>
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="directcheck">
+                                <input type="radio" class="custom-control-input" name="payment" value="Direct Check" id="directcheck">
                                 <label class="custom-control-label" for="directcheck">Direct Check</label>
                             </div>
                         </div>
                         
                         <div class="form-group mb-4">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
+                                <input type="radio" class="custom-control-input" name="payment" value="Bank Transfer" id="banktransfer">
                                 <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                             </div>
                         </div>
-                        
+    
+                        @error('payment')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+    
                         <button type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
                     </div>
                 </div>
-                
-                
             </div>
         </div>
     </form>
     
+</div>
+    </div>
+</div>
+</div>
     <!-- Car Booking End -->
 <script type="text/javascript">
     $(document).ready(function()

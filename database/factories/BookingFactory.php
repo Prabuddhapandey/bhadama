@@ -25,8 +25,10 @@ class BookingFactory extends Factory
                 //
                 
     
-                'fname' => $this->faker->name,
-                'lname' => $this->faker->name,
+                'fname' => $this->faker->randomElement([ 'Andrew','Amelia','Charlotte','Christopher','Evelyn','David','Michael','William','Matthew','Christopher',  'Andrew', 'Matthew',]),
+
+                'lname' => $this->faker->randomElement(['Garcia', 'Jones', 'Davis', 'Hernandez', 'Rodriguez', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'Evans',]),
+     
                 'email' => $this->faker->email,
                 'phone' => $this->faker->phoneNumber,
                 'pickup' => $this->faker->randomElement(['chabahil', 'koteshwor', 'Boudha', 'Tushal', 'RNAC', 'Gangabu','Jamal','EtankataKunna']),

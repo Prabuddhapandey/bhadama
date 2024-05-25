@@ -23,7 +23,8 @@ class booking extends Model
             'citizen_id',
             'citizen_image',
             'payment',
-            'user_id'
+            'user_id',
+            'status'
 
 
        

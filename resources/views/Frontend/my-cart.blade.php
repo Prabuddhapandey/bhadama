@@ -3,11 +3,21 @@
 
 @section('main')
 
+{{-- <div class="card-body">
+  @if (session('success'))
+      <div class="alert alert-success" role="alert">
+          {{ session('success') }}
+      </div>
+  @endif
 
-
-<!-- Rent A Car Start -->
-<div class="container-fluid py-5">
-    <div class="container pt-5 pb-3">
+  @if ($errors->any())
+  <div class="alert alert-danger">
+      <ul>
+          @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+          @endforeach
+      </ul>
+  </div>
         <h1 class="display-1 text-primary text-center"></h1>
         <h1 class="display-4 text-uppercase text-center mb-5">My BOOKED CARS</h1>
         <!-- Car Slider -->
@@ -16,25 +26,30 @@
             @foreach($cars as $item)
             <div class="col-md-4 mb-4">
                 <div class="rent-item">
-                  <button id="payment-button">Pay with Khalti</button>
-                    <img class="img-fluid mb-3" src="{{ asset('asset/img/images.jpeg') }}" alt="{{ $item->model }}">
+                 
+                    <img class="img-fluid mb-3" src
+@endif
+
+<!-- Rent A Car Start -->
+<div class="container-fluid py-5">
+    <div class="container pt-5 pb-3">="{{ asset('asset/img/images.jpeg') }}" alt="{{ $item->model }}">
                     <div class="text">
                         <h4 class="text-uppercase mb-2">{{$item->model}}</h4>
                         <div class="d-flex mb-3">
                             <span class="cat">{{$item->date}}</span>
-                            <p class="price ml-auto">RS: {{$item->price}}<span>/day</span></p>
+                            <button id="payment-button">Pay with Khalti</button>
+                            <p class="price ml-auto">RS: {{$item->listCar->price ?? '10000'}}<span>/day</span></p>
                         </div>
                         <div class="d-flex">
                             <a href="{{url('edit/booking/'.$item->id)}}" class="btn btn-primary py-2 mr-2">EDIT</a>
                             <a href="{{url('/rating',[$item->id])}}" class="btn btn-secondary py-2 mr-2">Rate Car</a>
-                            <form method="post" action="{{url('/delete/booking')}}">
-                                @csrf
-                                @method('DELETE')
-                            {{-- <button data-url="{{url('/detail',[$item->id])}}" class="btn btn-danger py-2">Cancel</button> --}}
-                            <button type="button" class="btn btn-danger py-2 delete-car" data-car-id="{{ $item->id }}">Cancel</button>
-                          
+                            <td>
+                                <form action="{{ route('product.destroy', $item->id  )}}" method="post" data-product-id="{{ $item->id }}" data-product-name="{{ $item->name }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit"  class="btn btn-danger delete-product">Delete</button></form>
+                            </td>
 
-                            </form>
                         </div>
                     </div>
                 </div>
@@ -45,99 +60,153 @@
         <!-- End of Car Slider -->
     </div>
 </div>
-<script src="https://khalti.s3.ap-south-1.amazonaws.com/KPG/dist/2020.12.17.0.0.0/khalti-checkout.iffe.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-  $('.delete-car').on('click', function(e) {
-    e.preventDefault(); // Prevent default form submission
 
-    var carId = $(this).data('car-id');
-    var deleteUrl = '{{ url('/delete/booking') }}/' + carId; // Construct the URL with car ID
-
-    // Confirmation Dialog (Optional, but recommended)
-    if (confirm('Are you sure you want to cancel this booking?')) {
-      $.ajax({
-        url: deleteUrl,
-        type: 'DELETE',
-        data: { // Include CSRF token for security
-          _token: $('meta[name="csrf-token"]').attr('content')
-        },
-        success: function(response) {
-          // Handle successful deletion on the server-side
-          if (response.success) {
-            // Remove the car element from the DOM
-            $('.rent-item[data-car-id="' + carId + '"]').remove();
-          } else {
-            alert('Error: ' + response.message); // Handle potential errors
-          }
-        },
-        error: function(error) {
-          console.error('Error deleting car:', error);
-          alert('An error occurred. Please try again later.');
-        }
-      });
-    }
-  });
-});
-</script>
-
-<script>
-  var config = {
-      // replace the publicKey with yours
-      "publicKey": "test_public_key_7b980e140b204d59a473a7ff77d7a501",
-      "productIdentity": "1234567890",
-      "productName": "Dragon",
-      "productUrl": "http://gameofthrones.wikia.com/wiki/Dragons",
-      "paymentPreference": [
-          "KHALTI",
-          "EBANKING",
-          "MOBILE_BANKING",
-          "CONNECT_IPS",
-          "SCT",
-          ],
-      "eventHandler": {
-          onSuccess (payload) {
-              // hit merchant api for initiating verfication
-              $.ajax({
-                type : "POST",
-                url : "{{route('khalti.verifyPayment')}}",
-                data:{
-                  'amount':1000,
-                  'token':payload.token,
-                  '_token':"{{csrf_token()}}"
-                     },
-                success:function(res){
-                  console.log(res);
-                         },
-                   error:function(e)
-                   {
-                     console.log(e);
-                   },
-           });
-                
-                
+<div class="card-body">
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
+  
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+  @endif --}}
+  
+  <!-- Rent A Car Start -->
+  <div class="container-fluid py-5">
+      <div class="container pt-5 pb-3">
+  
+          <div class= "container">
+              <div class="py-7 mt-9">
               
-              console.log(payload);
-          },
-          onError (error) {
-              console.log(error);
-          },
-          onClose () {
-              console.log('widget is closing');
-          }
-      }
-  };
+              <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">SN</th>
+                      <th scope="col">Car</th>
+                      <th scope="col">Image</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Action</th>
+                  
+                    </tr>
+                  </thead>
 
-  var checkout = new KhaltiCheckout(config);
-  var btn = document.getElementById("payment-button");
-  btn.onclick = function () {
-      // minimum transaction amount must be 10, i.e 1000 in paisa.
-      checkout.show({amount: 1000});
-  }
+          
+                  <tbody>
+                    @foreach($cars as $key => $item)
+                    <tr>
+                      <th scope="row">{{$key+1}}</th>
+                      <td>{{$item->model}}</td>
+                      <td><img src="{{ asset('asset/img/images.jpeg') }}" alt="{{ $item->model }}" width="100px"></td>
+                      <td>@RS: {{$item->listCar->price ?? '10000'}}</td>
+                      <th >{{$item->date}}</th>
+                      <td> <div>
+                        <a href="{{route('myCart.edit',$item->id)}}" class="btn btn-icon btn-success btn-xs mr-2 edit" id="" data-toggle="tooltip" title="Edit"><i class="fa fa-pen"></i></a>
+                                    
+                        {{-- <form  style="display: inline-block;"  method="post">
+                            @csrf
+                                    {{ method_field('DELETE') }} --}}
+                                   
+                            <button  type="submit" value="Delete" id="delete" data-id="{{$item->id}}" class="btn btn-icon btn-danger btn-xs mr-2 delete-btn"
+                              
+                                title="Delete"><i class="fa fa-trash"></i></button>
+                                {{-- </form> --}}
+                                <div>
+                            
+                      </td>
+                    </tr>
+                   @endforeach
+                  </tbody>
+
+                  <tfoot class="thead-dark">
+                    <tr>
+                      <th scope="col">Total Price</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                      <th scope="col">Total: <span class="pl-2">{{$sum}}</span></th>
+                      <th scope="col"></th>
+                      <th scope="col">
+                        <form action= "{{route('stripe.payment')}}" method="get " >
+                 
+                        <button type="submit" class="btn-danger rounded py-1">Checkout</button>
+                        </form>
+                      </th>
+                  
+                    </tr>
+                  </tfoot>
+
+                </table>
+          
+              
+              </div>
+              </div>
+      </div>
+  </div>
+  </div>
+    
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    $(document).on('click', '.delete-btn', function(e) {
+        e.preventDefault();
+
+        let bookingId = $(this).data('id');
+        var row = $('#booking-' + bookingId);
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '/myCart/' + bookingId,
+                    type: 'DELETE',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content') // Get the CSRF token from the meta tag
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            row.remove();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your booking has been deleted.',
+                                'success'
+                            ).then(() => {
+                                location.reload(); // Refresh the page after deletion
+                            });
+                        } else {
+                            Swal.fire(
+                                'Error!',
+                                response.error,
+                                'error'
+                            );
+                        }
+                    },
+                    error: function(xhr) {
+                        Swal.fire(
+                            'Error!',
+                            'Something went wrong!',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    });
 </script>
-<!-- Rent A Car End -->
 
 @endsection

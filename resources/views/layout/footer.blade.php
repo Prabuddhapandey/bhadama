@@ -3,7 +3,7 @@
     <div class="row pt-5">
         <div class="col-lg-3 col-md-6 mb-5">
             <h4 class="text-uppercase text-light mb-4">Get In Touch</h4>
-            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>Gwarko,Lalitpur</p>
+            <p class="mb-2"><i class="fa fa-map-marker-alt text-white mr-3"></i>Melbourne,Australia</p>
             <p class="mb-2"><i class="fa fa-phone-alt text-white mr-3"></i>+1234567890</p>
             <p><i class="fa fa-envelope text-white mr-3"></i>example@example.com</p>
             <h6 class="text-uppercase text-white py-2">Follow Us</h6>
@@ -29,22 +29,22 @@
             <h4 class="text-uppercase text-light mb-4">Car Gallery</h4>
             <div class="row mx-n1">
                 <div class="col-4 px-1 mb-2">
-                    <a href=""><img class="w-100" src="img/gallery-1.jpg" alt=""></a>
+                    <a href=""><img class="w-100" src="{{ asset('img/gallery-1.jpg') }}" alt=""></a>
                 </div>
                 <div class="col-4 px-1 mb-2">
-                    <a href=""><img class="w-100" src="img/gallery-2.jpg" alt=""></a>
+                    <a href=""><img class="w-100" src="{{ asset('img/gallery-2.jpg') }}" alt=""></a>
                 </div>
                 <div class="col-4 px-1 mb-2">
-                    <a href=""><img class="w-100" src="img/gallery-3.jpg" alt=""></a>
+                    <a href=""><img class="w-100" src="{{ asset('img/gallery-3.jpg') }}" alt=""></a>
                 </div>
                 <div class="col-4 px-1 mb-2">
-                    <a href=""><img class="w-100" src="img/gallery-4.jpg" alt=""></a>
+                    <a href=""><img class="w-100" src="{{ asset('img/gallery-4.jpg') }}" alt=""></a>
                 </div>
                 <div class="col-4 px-1 mb-2">
-                    <a href=""><img class="w-100" src="img/gallery-5.jpg" alt=""></a>
+                    <a href=""><img class="w-100" src="{{ asset('img/gallery-5.jpg') }}" alt=""></a>
                 </div>
                 <div class="col-4 px-1 mb-2">
-                    <a href=""><img class="w-100" src="img/gallery-6.jpg" alt=""></a>
+                    <a href=""><img class="w-100" src="{{ asset('img/gallery-6.jpg') }}" alt=""></a>
                 </div>
             </div>
         </div>
@@ -64,11 +64,9 @@
     </div>
 </div>
 <div class="container-fluid bg-dark py-4 px-sm-3 px-md-5">
-    <p class="mb-2 text-center text-body">&copy; <a href="#">Bhada-GO!</a>. All Rights Reserved.</p>
+    <p class="mb-2 text-center text-body">&copy; <a href="#">Car Rental!</a>. All Rights Reserved.</p>
     
-    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->					
-    <p class="m-0 text-center text-body">Designed by <a href="https://htmlcodex.com">Prabuddha Raj Pandey</a></p>
+    <!--/*** This template is free as long as you keep the footer author's credit link/attribution link/backlink. If you'd like to use the template without the footer author's credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->					
+    {{-- <p class="m-0 text-center text-body">Designed by <a href="https://htmlcodex.com">Prabuddha Raj Pandey</a></p> --}}
 </div>
 <!-- Footer End -->
-
-

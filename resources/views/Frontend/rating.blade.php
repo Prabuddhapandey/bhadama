@@ -25,7 +25,7 @@
                             
                             <div class="form-group">
                                 <label for="name">Car Model</label>
-                                <input type="text" class="form-control p-4" value="{{ $cars->listCar->model }}" readonly required="required">
+                                <input type="text" class="form-control p-4" value="{{ $cars->listCar->model ?? 'BMW' }}" readonly required="required">
                             </div>
         
                             <div class="form-group">
@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Location</label>
-                                <input type="text" class="form-control p-4" value="{{ $cars->listCar->location }}" readonly required="required">
+                                <input type="text" class="form-control p-4" value="{{ $cars->listCar->location ?? 'Chabahil'}}" readonly required="required">
                             </div>
                             <div class="form-group">
                                 <label for="description">Rating</label>

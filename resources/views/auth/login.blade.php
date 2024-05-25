@@ -40,9 +40,9 @@
 
             @endif
 
-           
+           <div class="separator"></div>
                
-                    <a class="text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ url('/register') }}">
+                    <a class="underline ml-2 text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ url('/registers') }}">
                        <span > &nbsp;&nbsp;{{ ('Register Your Account') }}</span>
                     </a>
           

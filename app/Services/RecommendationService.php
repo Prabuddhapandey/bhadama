@@ -47,11 +47,11 @@ class RecommendationService
 
 private function calculateSimilarity($ratings1, $ratings2)
 {
-    // Dummy similarity calculation
-    // For example, you can use Pearson correlation coefficient or cosine similarity
+    
+
     return rand(0, 1); // Random similarity for demonstration
 }
-    }
+ }
     
  
 

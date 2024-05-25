@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::table('list_cars', function (Blueprint $table) {
             //
             $table->string('price');
+            $table->string('date')->nullable();
         });
     }
 

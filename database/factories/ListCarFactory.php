@@ -20,13 +20,15 @@ class ListCarFactory extends Factory
             //
             'model' => $this->faker->randomElement(['Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW', 'Mercedes-Benz']),
 
-            'fname' => $this->faker->name,
-            'lname' => $this->faker->name,
+           'fname' => $this->faker->randomElement([ 'Andrew','Amelia','Charlotte','Christopher','Evelyn','David','Michael','William','Matthew','Christopher',  'Andrew', 'Matthew',]),
+
+           'lname' => $this->faker->randomElement(['Garcia', 'Jones', 'Davis', 'Hernandez', 'Rodriguez', 'Wilson', 'Moore', 'Taylor', 'Anderson', 'Thomas', 'Jackson', 'Evans',]),
+
             'email' => $this->faker->email,
             'phone' => $this->faker->phoneNumber,
-            'location' => $this->faker->randomElement(['chabahil', 'koteshwor', 'Boudha', 'Tushal', 'RNAC', 'Gangabu','Jamal','EtankataKunna']),
+            'location' => $this->faker->randomElement(['Canberra', 'Sydney', 'Brisbane', 'Melbourne', 'Adelaide', 'Gold Coast','Bendigo','Burnie']),
             
-        'price' =>$this-> faker->numberBetween(100000,2000000),
+            'price' =>$this-> faker->numberBetween(100000,2000000),
           
         ];
     }

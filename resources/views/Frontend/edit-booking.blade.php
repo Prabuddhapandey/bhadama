@@ -119,7 +119,7 @@
 
                             <input type="hidden" name="car_id" value="{{ $cars->id }}">
                             <div class="col-6 form-group">
-                                <input type="text" class="form-control p-4"  value="{{$cars->model}}" @readonly(true) required="required">
+                                <input type="text" class="form-control p-4"  value="{{$cars->fname.' '}}{{$cars->lname}}" @readonly(true) required="required">
                             </div>
                             
                                 

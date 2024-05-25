@@ -16,80 +16,114 @@
      @if(auth()->check())
    
      
-    <!-- Car Booking Start -->
-    <form class="container-fluid pb-5" action="{{url('/list/car')}}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <h2 class="mb-4">Personal Detail</h2>
-                    <div class="mb-5">
-                        <div class="row">
-                            <div class="col-6 form-group">
-                                <input type="text" name="fname" class="form-control p-4" placeholder="First Name" required="required">
-                            </div>
-                            <div class="col-6 form-group">
-                                <input type="text" name="lname" class="form-control p-4" placeholder="Last Name" required="required">
-                            </div>
+<!-- Car Booking Start -->
+<form class="container-fluid pb-5" action="{{ url('/list/car') }}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+
+                <div class="card-body">
+                    @if (session('success'))
+                        <div class="alert alert-info" role="alert">
+                            {{ session('success') }}
                         </div>
-                        <div class="row">
-                            <div class="col-6 form-group">
-                                <input type="email" name="email" class="form-control p-4" placeholder="Your Email" required="required">
-                            </div>
-                            <div class="col-6 form-group">
-                                <input type="text" name="phone" class="form-control p-4" placeholder="Mobile Number" required="required">
-                            </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    
+                <h2 class="mb-4">Personal Detail</h2>
+                <div class="mb-5">
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <input type="text" name="fname" class="form-control p-4 @error('fname') is-invalid @enderror" placeholder="First Name" value="{{ old('fname') }}">
+                            @error('fname')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-6 form-group">
+                            <input type="text" name="lname" class="form-control p-4 @error('lname') is-invalid @enderror" placeholder="Last Name" value="{{ old('lname') }}">
+                            @error('lname')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
-                    <h2 class="mb-4">listing Detail</h2>
-                    <div class="mb-5">
-                        
-                        <div class="row " >
-                            <div class="col-6 form-group">
-                                
-                                    <input type="text" name="location" class="form-control p-4 " placeholder="Pickup location"  />
-                                
-                            </div>
-                            <div class="col-6 form-group">
-                                    <input type="text" name="model" class="form-control p-4" placeholder="Car Model"/>
-                            </div>
-                            
-                    
-                       </div>
-                      <div class="row">
-                           <div class="col-6 form-group">
-                            <input type="text" name="price" class="form-control p-4" placeholder="Price Per Day"/>
-                          </div>
-                            <div class="col-6 form-group">
-                                  
-                              <input type="text" name="date" class="form-control p-4" placeholder="Pickup Date" />
-                
-                            </div>
-                    
-                            <div class="col-6 form-group">
-                        
-                              <input type="text" name="time" class="form-control p-4 " placeholder="Pickup Time" />
-                        
-                            </div>
-                       </div>       
-                        <div class="form-group">
-                            <label >Upload  Photo of car
-                                
-                            </label>
-                            <input type="file" name="image" class="form-control-file">
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <input type="email" name="email" class="form-control p-4 @error('email') is-invalid @enderror" placeholder="Your Email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
-                   
-                
-                        <button type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
+                        <div class="col-6 form-group">
+                            <input type="text" name="phone" class="form-control p-4 @error('phone') is-invalid @enderror" placeholder="Mobile Number" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
                     </div>
                 </div>
-              
-
-
-            
+                <h2 class="mb-4">listing Detail</h2>
+                <div class="mb-5">
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <input type="text" name="location" class="form-control p-4 @error('location') is-invalid @enderror" placeholder="Pickup location" value="{{ old('location') }}">
+                            @error('location')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-6 form-group">
+                            <input type="text" name="model" class="form-control p-4 @error('model') is-invalid @enderror" placeholder="Car Model" value="{{ old('model') }}">
+                            @error('model')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 form-group">
+                            <input type="number" name="price" class="form-control p-4 @error('price') is-invalid @enderror" placeholder="Price Per Day" value="{{ old('price') }}">
+                            @error('price')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-6 form-group">
+                            <input type="date" name="date" class="form-control p-4 @error('date') is-invalid @enderror" placeholder="Pickup Date" value="{{ old('date') }}">
+                            @error('date')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-6 form-group">
+                            <input type="time" name="time" class="form-control p-4 @error('time') is-invalid @enderror" placeholder="Pickup Time" value="{{ old('time') }}">
+                            @error('time')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Upload Photo of car
+                            <div class="card" style="width: 12rem; height: 10rem">
+                                <img id="showImage" class="card-img-top" alt="Preview" width="100ex" height="150ex">
+                            </div>
+                        </label>
+                        <input type="file" name="image" id="image" class="form-control-file @error('image') is-invalid @enderror" value="{{ old('image') }}">
+                        @error('image')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <button type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
+</form>
 
     @else
     <!-- Car Booking End -->
@@ -265,6 +299,21 @@
 
 
    
+</body>
+
+
+<script type="text/javascript">
+    $(document).ready(function()
+    {
+      $('#image').change(function(e){
+        var reader = new FileReader();
+        reader.onload=function(e){
+          $('#showImage').attr('src',e.target.result);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+      });
+    });
+  </script>
 </body>
 
 @endsection

@@ -17,12 +17,19 @@ class Homecontroller extends Controller
 {
     public function index(Request $request)
     {
-
-       
-        $cars = ListCar::all();
-        return view('Frontend.index', compact('cars'));
+         $cars = ListCar::paginate(6);
+          
+        if($request->ajax())
+        {
+                return response()->json([
+                    'html' => view('Frontend.components.FindYourCar', compact('cars'))->render(),
+                    'pagination' => (string) $cars->links('vendor.pagination.bootstrap-4')
+                ]);
+        }
         
+        return view('Frontend.index', compact('cars'));
     }
+       
     public function service()
     {
         return view('Frontend.service');
@@ -37,22 +44,29 @@ class Homecontroller extends Controller
     }
     public function Findcars(Request $request)
     {
+        $perPage = 6; // Items per page (you can adjust this)
 
-                $cars=ListCar::all();
-        $directory = public_path('uploads/cars');
+        $selectedModel = $request->get('model');
 
-        // Get all files in the directory
-        $files = File::files($directory);
-    
-        // Select a random file from the array of files
-        $randomFile = $files[array_rand($files)];
-    
-        // Generate the URL for the randomly selected image
-        $imageUrl = asset('uploads/cars/' . $randomFile->getFilename());
+        $carsQuery = ListCar::query(); // Start with a clean query
 
+        if ($selectedModel) {
+            $carsQuery->where('model', $selectedModel); // Filter by model if selected
+        }
 
-        return view('Frontend.find-your-car', ['cars' => $cars, 'imageUrl' => $imageUrl]);
+        $cars = $carsQuery->paginate($perPage); // Apply pagination
+
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('frontend.components.FindYourCar', compact('cars'))->render(),
+                'pagination' => (string) $cars->links('vendor.pagination.bootstrap-4'),
+            ]);
+        }
+
+        return view('Frontend.find-your-car', compact('cars'));
     }
+  
+
     public function pages()
     {
         return view('Frontend.pages');
@@ -158,8 +172,20 @@ class Homecontroller extends Controller
 
     }
 
+    public function getCars(Request $request)
+{
+    $perPage = 6;
+    $cars = listCar::paginate($perPage);
 
+    if ($request->ajax()) 
+    {
+       return response()->json([
+                    'html' => view('Frontend.components.FindYourCar', compact('cars'))->render(),
+                    'pagination' => (string) $cars->links('vendor.pagination.bootstrap-4')
+                ]);
 
+   
+}
 
-
+}
 }

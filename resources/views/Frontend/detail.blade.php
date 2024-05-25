@@ -36,6 +36,10 @@
                     </div>
                     <div class="col-md-3 col-6 mb-2">
                         <i class="text-primary mr-2"></i>
+                       <span>Location:{{$cars->location}} </span>
+                    </div>
+                    <div class="col-md-3 col-6 mb-2">
+                        <i class="text-primary mr-2"></i>
                        <span>Email:{{$cars->email}} </span>
                     </div>
                     <div class="col-md-4 col-6 mb-2">
@@ -46,7 +50,7 @@
                     <div class="row pt-2">
                         <div class="col-md-3 col-6 mb-2">
                             <i class="fa fa-car text-primary mr-2"></i>
-                            <span>Model: 2015</span>
+                            <span>Model: latest</span>
                         </div>
                         <div class="col-md-3 col-6 mb-2">
                             <i class="fa fa-cogs text-primary mr-2"></i>

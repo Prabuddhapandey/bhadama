@@ -17,13 +17,19 @@
                @csrf
                <div class="field">
                   <span class="fa fa-user"></span>
-                  <input type="text" required placeholder="Email or Phone">
-               </div>
-               <div class="field space">
+                  <input type="text" name="email_or_phone" value="{{ old('email_or_phone') }}" required placeholder="Email or Phone">
+                  @error('email_or_phone')
+                      <div class="text-danger">{{ $message }}</div>
+                  @enderror
+              </div>
+              <div class="field space">
                   <span class="fa fa-lock"></span>
-                  <input type="password" class="pass-key" required placeholder="Password">
-                  <span class="show">SHOW</span>
-               </div>
+                  <input type="password" class="pass-key" name="password" required placeholder="Password">
+                  <span class="show" onclick="togglePassword()">SHOW</span>
+                  @error('password')
+                      <div class="text-danger">{{ $message }}</div>
+                  @enderror
+              </div>
                <div class="pass">
                   <a href="#">Forgot Password?</a>
                </div>
@@ -31,17 +37,7 @@
                   <input type="submit" value="LOGIN">
                </div>
             </form>
-            <div class="login">
-               Or login with
-            </div>
-            <div class="links">
-               <div class="facebook">
-                  <i class="fab fa-facebook-f"><span>Facebook</span></i>
-               </div>
-               <div class="instagram">
-                  <i class="fab fa-instagram"><span>Instagram</span></i>
-               </div>
-            </div>
+           
             <div class="signup">
                Don't have account?
                <a href="{{url('/registers')}}">Signup Now</a>

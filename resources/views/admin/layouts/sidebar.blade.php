@@ -51,7 +51,7 @@
         </a>
         <div id="collapsebook" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{url('AdminCar')}}">Booking List</a>
+                <a class="collapse-item" href="{{route('admin.bookings.table')}}">Booking List</a>
             </div>
         </div>
     </li>
@@ -60,7 +60,7 @@
 
       <!--destination  -->
 
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed"  data-toggle="collapse" data-target="#collapsedestination"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -182,9 +182,11 @@
     </div>
     
 
-  
+   --}}
 
   
+
+
 
 </ul>
 <!-- End of Sidebar -->

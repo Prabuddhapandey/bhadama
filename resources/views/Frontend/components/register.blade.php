@@ -56,17 +56,7 @@
                   <input type="submit" value="REGISTER">
                </div>
             </form>
-            <div class="login">
-               Or register with
-            </div>
-            <div class="links">
-               <div class="facebook">
-                  <i class="fab fa-facebook-f"><span>Facebook</span></i>
-               </div>
-               <div class="instagram">
-                  <i class="fab fa-instagram"><span>Instagram</span></i>
-               </div>
-            </div>
+           
             <div class="signup">
                Already have an account?
                <a href="{{url('/login')}}">Login Now</a>

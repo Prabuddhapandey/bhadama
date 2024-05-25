@@ -2,216 +2,160 @@
 @extends('layout.app')
 @section('main')
 <body>
-    <!-- Page Header Start -->
-    <div class="container-fluid page-header">
-        <h1 class="display-3 text-uppercase text-white mb-3">About</h1>
-        <div class="d-inline-flex text-white">
-            <h6 class="text-uppercase m-0"><a class="text-white" href="">Home</a></h6>
-            <h6 class="text-body m-0 px-3">/</h6>
-            <h6 class="text-uppercase text-body m-0">About</h6>
+   {{-- @include('layouts.header') --}}
+   <div class="stricky-header stricked-menu main-menu main-menu-three">
+    <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+</div><!-- /.stricky-header -->
+<div class="page-wrapper">
+ 
+<!--Page Header Start-->
+<section class="page-header">
+    <div class="page-header__bg"   style="background-image: url(assets/images/backgrounds/page-header-bg-8.jpg);">
+    {{-- url({{asset('uploads/branch/'.$banner->banner_image  )}});"> --}}
+    </div>
+    <div class="container">
+        
+        <div class="page-header__inner">
+            <p>{{$banner->branch_title ?? ''}}</p>
+            <h2>{{$banner->branch_paragraph ?? ''}}</</h2>
+            <div class="thm-breadcrumb__inner">
+                <ul class="thm-breadcrumb list-unstyled">
+                    <li><a href="index-2.html">Home</a></li>
+                    <li><span>/</span></li>
+                    <li>Contact</li>
+                </ul>
+            </div>
         </div>
     </div>
-    <!-- Page Header Start -->
+</section>
+<!--Page Header End-->
+{{-- 
 
+{{-- <!--Contact One Start -->
 
-    
-  
-        <!--About Three Start-->
-                <section class="about-three">
-                    <div class="container mr-2">
-                        <div class="row">
-                            <div class="col-xl-5 col-lg-6">
-                                <div class="about-three__left">
-                                    <div class="about-three__img-box">
-                                        <div class="about-three__img">
-                                            <img  alt="">
-                                        </div>
-                                        
-                                        <div class="about-three__img-3">
-                                            <img src="{{asset('asset/img/about.png')}}" width="300px" height="250px" alt="">
-                                        </div>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-7 col-lg-6">
-                                 <h1 class="section-title__tagline">About us</h1>
-                                <div class="about-three__right">
-                                   
-                                    <div class="section-title text-left">
-                                        
-                                        <div class="section-title__title-box">
-                                            <h2 class="section-title__title">{{$abouts->about_us ?? ''}}</h2>
-                                          
-                                        </div>
-                                    </div>
-                                    <div class="about-three__tab-box">
-                                        <div class="tabs-one__inner tabs-box">
-                                            <ul class="tab-buttons clearfix list-unstyled">
-                                                <li data-tab="#ourmission" class="tab-btn active-btn"><span>About Us</span>
-                                                </li>
-                                                
-                                            </ul>
-                                            <div class="tabs-content">
-                                                <!--tab-->
-                                                <div class="tab active-tab" id="ourmission">
-                                                    <div class="tabs-one__tab-content-inner">
-                                                        <p class="tabs-one__text">this is me prabuddha </p>
-                                                    </div>
-                                                </div>
-                                                <!--tab-->
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="about-three__btn-box">
-                                        <a href="{{url('/about')}}" class="about-three__btn thm-btn"><span
-                                                class="fas fa-long-arrow-alt-right"></span>learn more</a>
-                                    </div>
-                                </div>
+<!--Contact One End --> --}}
+ <!--Contact Page Start-->
+ <section class="contact-page">
+    <div class="container">
+        <div class="row">
+            <!--Contact Page Single Start-->
+            <div class="col-xl-4 col-lg-4">
+                <div class="contact-page__single contact-page__single-1">
+                    <h3 class="contact-page__title">Office Location</h3>
+                    <p class="contact-page__text">{{$banner->location ?? ''}}</p>
+                    <div class="contact-page__icon">
+                        <span class="icon-tracking"></span>
+                    </div>
+                    <div class="contact-page__count"></div>
+                </div>
+            </div>
+            <!--Contact Page Single End-->
+            <!--Contact Page Single Start-->
+            <div class="col-xl-4 col-lg-4">
+                <div class="contact-page__single">
+                    <h3 class="contact-page__title"><a href="tel:800456789">Tel:{{$banner->phone ?? ''}}</a></h3>
+                    <p class="contact-page__text">To get in touch with us, please submit
+                 
+                    <div class="contact-page__icon">
+                        <span class="icon-call"></span>
+                    </div>
+                    <div class="contact-page__count"></div>
+                </div>
+            </div>
+            <!--Contact Page Single End-->
+            <!--Contact Page Single Start-->
+            <div class="col-xl-4 col-lg-4">
+                <div class="contact-page__single contact-page__single-3">
+                    <h3 class="contact-page__title"><a href="mailto:info@webmail.com">{{$banner->phone ?? ''}}</a></h3>
+                    <p class="contact-page__text">To better connect with our team
+                        <br> send your mail.</p>
+                    <div class="contact-page__icon">
+                        <span class="icon-open"></span>
+                    </div>
+                    <div class="contact-page__count"></div>
+                </div>
+            </div>
+            <!--Contact Page Single End-->
+        </div>
+    </div>
+</section>
+<!--Contact Page End-->
 
-                                
-                            </div>
-                        
-                
-
-
-                            <div class="col-xl-5 col-lg-6">
-                                <div class="about-three__left">
-                                    <div class="about-three__img-box">
-                                        <div class="about-three__img">
-                                            <img  alt="">
-                                        </div>
-                                        
-                                        <div class="about-three__img-3 ">
-                                            <img src="{{asset('asset/img/about/shubham.jpeg')}}"  width="300px" height="250px" alt="">
-                                        </div>
-                                    
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-7 col-lg-6">
-                                <div class="about-three__right">
-                                   
-                                    <div class="section-title text-left">
-                                        
-                                        <div class="section-title__title-box">
-                                            <h2 class="section-title__title">{{$abouts->about_us ?? ''}}</h2>
-                                          
-                                        </div>
-                                    </div>
-                                    <div class="about-three__tab-box">
-                                        <div class="tabs-one__inner tabs-box">
-                                            <ul class="tab-buttons clearfix list-unstyled">
-                                                <li data-tab="#ourmission" class="tab-btn active-btn"><h4>Shubham Thapa</h4><br>
-                                                   <span>Frontend Developer|Documentation</span>
-                                                </li>
-                                                
-                                            </ul>
-                                            <div class="tabs-content">
-                                                <!--tab-->
-                                                <div class="tab active-tab" id="ourmission">
-                                                    <div class="tabs-one__tab-content-inner">
-                                                        <p class="tabs-one__text">Involved translating design mockups into code, optimizing performance, and troubleshooting issues that arise during development. Also collaborated with backend developers to integrate frontend components with server-side logic.</p>
-                                                    </div>
-                                                </div>
-                                                <!--tab-->
-                                               
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="about-three__btn-box">
-                                        <a href="{{url('/about')}}" class="about-three__btn thm-btn"><span
-                                                class="fas fa-long-arrow-alt-right"></span>learn more</a>
-                                    </div>
-                                
-
-
-                                    <div class="col-xl-5 col-lg-6">
-                                        <div class="about-three__left">
-                                            <div class="about-three__img-box">
-                                                <div class="about-three__img">
-                                                    <img  alt="">
-                                                </div>
-                                                
-                                                <div class="about-three__img-3">
-                                                    <img src="{{asset('asset/img/about.png')}}" width="300px" height="250px" alt="">
-                                                </div>
-                                            
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-7 col-lg-6">
-                                        
-                                         <h1 class="section-title__tagline">About us</h1>
-                                        <div class="about-three__right">
-                                           
-                                            <div class="section-title text-left">
-                                                
-                                                <div class="section-title__title-box">
-                                                    <h2 class="section-title__title">{{$abouts->about_us ?? ''}}</h2>
-                                                  
-                                                </div>
-                                            </div>
-                                            <div class="about-three__tab-box">
-                                                <div class="tabs-one__inner tabs-box">
-                                                    <ul class="tab-buttons clearfix list-unstyled">
-                                                        <li data-tab="#ourmission" class="tab-btn active-btn"><span>About Us</span>
-                                                        </li>
-                                                        
-                                                    </ul>
-                                                    <div class="tabs-content">
-                                                        <!--tab-->
-                                                        <div class="tab active-tab" id="ourmission">
-                                                            <div class="tabs-one__tab-content-inner">
-                                                                <p class="tabs-one__text">this is me prabuddha </p>
-                                                            </div>
-                                                        </div>
-                                                        <!--tab-->
-                                                       
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<!--Contact One Start -->
+<section class="contact-one">
+    <div class="contact-one__bg"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-5">
+                <div class="contact-one__left">
+                    <div class="section-title text-left">
+                        <p class="section-title__tagline">Get In Touch</p>
+                        <div class="section-title__title-box">
+                            <h2 class="section-title__title">Let’s talk with us</h2>
+                            <p>Have project</p>
                         </div>
                     </div>
-                </section>
-                <!--About Three End-->
-
-
-             
-
-    {{-- <!-- Banner Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="row mx-0">
-                <div class="col-lg-6 px-0">
-                    <div class="px-5 bg-secondary d-flex align-items-center justify-content-between" style="height: 350px;">
-                        <img class="img-fluid flex-shrink-0 ml-n5 w-50 mr-4" src="img/banner-left.png" alt="">
-                        <div class="text-right">
-                            <h3 class="text-uppercase text-light mb-3">Want to be driver?</h3>
-                            <p class="mb-4">Lorem justo sit sit ipsum eos lorem kasd, kasd labore</p>
-                            <a class="btn btn-primary py-2 px-4" href="">Start Now</a>
-                        </div>
+                    <div class="contact-one__form-box">
+                        <form action={{route('enquiry')}}  method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="contact-one__input-box">
+                                        <div class="contact-one__icon">
+                                            <span class="icon-user"></span>
+                                        </div>
+                                        <input type="text" placeholder="Full name" name="name">
+                                    </div>
+                                </div>
+                                <div class="col-xl-12">
+                                    <div class="contact-one__input-box">
+                                        <div class="contact-one__icon">
+                                            <span class="icon-open-mail"></span>
+                                        </div>
+                                        <input type="email" placeholder="Email address" name="email">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="contact-one__input-box text-message-box">
+                                        <div class="contact-one__icon contact-one__icon-2">
+                                            <span class="icon-pen"></span>
+                                        </div>
+                                        <textarea  type="text" name="message" placeholder="Message"></textarea>
+                                    </div>
+                                    <div class="contact-one__btn-box">
+                                        <button type="submit" class="thm-btn contact-one__btn"><span
+                                                class="fas fa-long-arrow-alt-right"></span>more
+                                            service</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="result"></div>
                     </div>
                 </div>
-                <div class="col-lg-6 px-0">
-                    <div class="px-5 bg-dark d-flex align-items-center justify-content-between" style="height: 350px;">
-                        <div class="text-left">
-                            <h3 class="text-uppercase text-light mb-3">Looking for a car?</h3>
-                            <p class="mb-4">Lorem justo sit sit ipsum eos lorem kasd, kasd labore</p>
-                            <a class="btn btn-primary py-2 px-4" href="">Start Now</a>
-                        </div>
-                        <img class="img-fluid flex-shrink-0 mr-n5 w-50 ml-4" src="img/banner-right.png" alt="">
+            </div>
+            <div class="col-xl-7">
+                <div class="contact-one__right">
+                    <div class="contact-one__logo">
+                        <a href="#">Eston.</a>
+                    </div>
+                    <div class="contact-one__google-map">
+                        <iframe
+                            src={{$banner->map ?? ''}}
+                            class="google-map__one" allowfullscreen></iframe>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Banner End -->  --}}
+</section>
+<!--Contact One End -->
+
+</div>
+
 
 
 </body>

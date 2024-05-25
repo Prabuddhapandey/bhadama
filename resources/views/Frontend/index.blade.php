@@ -7,27 +7,14 @@
 
 
 <!-- Search Start -->
-<form action="{{ route('search') }}" method="post">
+<form action="{{ route('search') }}" method="get">
     @csrf
   <div class="container-fluid bg-white pt-3 px-lg-5">
-  <div class="row mx-n2">
-    <div class="col-xl-2 col-lg-4 col-md-6 px-2">
+  <div class="row mx-n2" @style('padding-left:60em;')>
+    <div class="col-xl-6 col-lg-4 col-md-6 px-2">
         <input type="text" name="location" class="form-control px-4 mb-3" style="height: 50px;" placeholder="Pickup Location">
     </div>
-    <div class="col-xl-2 col-lg-4 col-md-6 px-2">
-        <input type="text" class="form-control px-4 mb-3"  @readonly(true) style="height: 50px;" placeholder="Drop Location">
-    </div>
-    <div class="col-xl-2 col-lg-4 col-md-6 px-2">
-        <div class="date mb-3" id="date" data-target-input="nearest">
-            <input type="text" class="form-control p-4 datetimepicker-input"  @readonly(true) placeholder="Pickup Date" />
-        </div>
-    </div>
-    <div class="col-xl-2 col-lg-4 col-md-6 px-2">
-        <div class="time mb-3" id="time" data-target-input="nearest">
-            <input type="text" class="form-control p-4 "  @readonly(true) placeholder="Pickup Time" />
-        </div>
-    </div>
-    <div class="col-xl-2 col-lg-4 col-md-6 px-2">
+    {{-- <div class="col-xl-4 col-lg-4 col-md-6 px-2">
         <select type="text" class="form-control px-4 mb-3" name="model" style="height: 50px;" placeholder="Select A Car" required="required">
             <option value="" disabled selected>Select a car</option>
             @foreach($cars as $item)
@@ -35,8 +22,8 @@
            
             @endforeach
         </select>
-    </div>
-    <div class="col-xl-2 col-lg-4 col-md-6 px-2">
+    </div> --}}
+    <div class="col-xl-6 col-lg-4 col-md-6 px-2">
         <button class="btn btn-primary btn-block mb-3"   type="submit" style="height: 50px;">Search</button>
     </div>
 </div>
@@ -93,11 +80,11 @@
     <div class="container-fluid py-5">
         <div class="container pt-5 pb-3">
             <h1 class="display-1 text-primary text-center">01</h1>
-            <h1 class="display-4 text-uppercase text-center mb-5">Welcome To <span class="text-primary">BHADA-GO!</span></h1>
+            <h1 class="display-4 text-uppercase text-center mb-5">Welcome To <span class="text-primary">Car Rental!</span></h1>
             <div class="row justify-content-center">
                 <div class="col-lg-10 text-center">
                     <img class="w-75 mb-4" src="{{asset('asset/img/about.png')}}" alt="">
-                    <p>Justo et eos et ut takimata sed sadipscing dolore lorem, et elitr labore labore voluptua no rebum sed, stet voluptua amet sed elitr ea dolor dolores no clita. Dolores diam magna clita ea eos amet, amet rebum voluptua vero vero sed clita accusam takimata. Nonumy labore ipsum sea voluptua sea eos sit justo, no ipsum sanctus sanctus no et no ipsum amet, tempor labore est labore no. Eos diam eirmod lorem ut eirmod, ipsum diam sadipscing stet dolores elitr elitr eirmod dolore. Magna elitr accusam takimata labore, et at erat eirmod consetetur tempor eirmod invidunt est, ipsum nonumy at et.</p>
+                    <p>we provide top-notch car rental services designed to meet all your transportation needs with ease and convenience. Whether you’re planning a vacation, a business trip, or just need a temporary vehicle, we have the perfect car for you.</p>
                 </div>
             </div>
             <div class="row mt-3">
@@ -147,43 +134,46 @@
     </div>
     <!-- Banner End -->
 
-
+<div >
     @include('Frontend.components.FindYourCar')
-
-
-   
-    <!-- Vendor Start -->
-    <div class="container-fluid py-5">
-        <div class="container py-5">
-            <div class="owl-carousel vendor-carousel">
-                <div class="bg-light p-4">
-                    <img src="{{('img/vendor-1.png')}}" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="{{('img/vendor-2.png')}}" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="{{asset('asset/img/vendor-3.png')}}" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="{{asset('asset/img/vendor-4.png')}}" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="{{asset('asset/img/vendor-5.png')}}" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="{{asset('asset/img/vendor-6.png')}}" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="{{asset('asset/img/vendor-7.png')}}" alt="">
-                </div>
-                <div class="bg-light p-4">
-                    <img src="{{asset('asset/img/vendor-8.png')}}" alt="">
-                </div>
-            </div>
+    <div class="row">
+        <div  id="pagination-links" >
+            <a href="{{route('find.cars')}}" style ="text-decoration: underline; color: blue">See more</a>
         </div>
     </div>
-    <!-- Vendor End -->
 
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $(document).on('click', '.pagination a', function(e) {
+        e.preventDefault();
+        var url = '{{url('cars\ajax')}}' // Get the pagination link URL
+        fetchPage(url);
+    });
+
+    function fetchPage(url) {
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json', // Expecting a JSON response
+            success: function(response) {
+                console.log('AJAX success:', response); // Log the response for debugging
+                if (response.html && response.pagination) {
+                    $('#car-container').html(response.html);
+                    $('#pagination-links').html(response.pagination);
+                } else {
+                    console.error('Unexpected response format:', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error:', xhr.status, status, error); // Log the error details
+            }
+        });
+    }
+});
+</script>
+</div>
 
 @endsection
