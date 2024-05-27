@@ -134,7 +134,7 @@
                     <div class="mb-8">
                         <div class="row">
                             <input type="hidden" name="user_id" value="{{ session('reservation.user_id', old('user_id', $userId)) }}">
-                            <input type="hidden" name="car_id" value="{{$cars->id)}}">
+                            <input type="hidden" name="car_id" value="{{$cars->id}}">
                             <input type="hidden" name="status" value="pending">
                             <div class="col-6 form-group">
                                 <label>Model</label>
@@ -276,7 +276,7 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
 
-                        <button type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
+                        <button type="submit" class="btn btn-block btn-primary py-3">Book Now</button>
                     </div>
                     <a href="" class="btn btn-danger pl-4 ml-5">Cancel Booking</a>
                 </div>

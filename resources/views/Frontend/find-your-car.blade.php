@@ -70,11 +70,19 @@
             @include('Frontend.components.FindYourCar')
         </div>
     </div>
+    @if($cars->isEmpty())
+    <div class="row">
+        <div class="col-md-12 text-center" id="pagination-links" style="padding-left:200px">
+          
+        </div>
+    </div>
+    @else
     <div class="row">
         <div class="col-md-12 text-center" id="pagination-links" style="padding-left:200px">
             {{ $cars->links('vendor.pagination.bootstrap-4') }}
         </div>
     </div>
+    @endif
 </div>
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
