@@ -81,8 +81,17 @@
                             @enderror
                         </div>
                         <div class="col-6 form-group">
-                            <input type="text" name="model" class="form-control p-4 @error('model') is-invalid @enderror" placeholder="Car Model" value="{{ old('model') }}">
-                            @error('model')
+                            <select type="text" class="form-control px-4 mb-3 @error('model') is-invalid @enderror" name="model" id="model" style="height: 50px;" placeholder="Select A Car" required="required">
+                                <option value="">Select a model</option>
+                                <option value="">Select a Model</option>
+                                <option value="Toyota">Toyota</option>
+                                <option value="Honda">Honda</option>
+                                <option value="Ford">Ford</option>
+                                <option value="Chevrolet">Chevrolet</option>
+                                <option value="BMW">BMW</option>
+                                <option value="Mercedes-Benz">Mercedes-Benz</option>    
+                            </select>
+                             @error('model')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -95,14 +104,29 @@
                             @enderror
                         </div>
                         <div class="col-6 form-group">
-                            <input type="date" name="date" class="form-control p-4 @error('date') is-invalid @enderror" placeholder="Pickup Date" value="{{ old('date') }}">
-                            @error('date')
+                            <select type="text" class="form-control px-4 mb-3 @error('type') is-invalid @enderror" name="type" id="type" style="height: 50px;" placeholder="Select A Car" required="required">
+                                <option value="">Select a Type</option>
+                                <option value="Sedan">Sedan</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Minivan">Minivan</option>
+                                <option value="Convertible">Convertible</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Wagon">Wagon</option>
+                                <option value="Coupe">Coupe</option>
+                            </select>
+                            @error('type')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-6 form-group">
                             <input type="time" name="time" class="form-control p-4 @error('time') is-invalid @enderror" placeholder="Pickup Time" value="{{ old('time') }}">
                             @error('time')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-6 form-group">
+                            <input type="date" name="date" class="form-control p-4 @error('date') is-invalid @enderror" placeholder="Pickup Date" value="{{ old('date') }}">
+                            @error('date')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>

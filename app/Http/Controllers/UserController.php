@@ -7,8 +7,6 @@ use App\Models\ListCar;
 use App\Models\Rating;
 use App\Models\Booking;
 use App\Models\User;
-
-
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -51,10 +49,10 @@ class UserController extends Controller
             'time'=>['required','string','max:100'],
             'price'=>['required'],
             'image'=>'nullable',
-           
-
+            'type' => 'required'
         ]);
 
+        $validated['user_id'] =Auth::id();
            // Handle image upload and save
           
     if($request->hasfile('image'))

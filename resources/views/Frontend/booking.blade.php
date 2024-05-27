@@ -105,49 +105,46 @@
     <!-- Detail End --> --}}
 
     
-    <!-- Car Booking Start -->
-    <form class="container-fluid pb-5" method="post" action="{{ url('/booking/store/') }}" enctype="multipart/form-data">
-        @csrf
-        <div class="container">
+   <!-- Car Booking Start -->
+<!-- Car Booking Start -->
+<form class="container-fluid pb-5" method="post" action="{{ url('/booking/store/') }}" enctype="multipart/form-data">
+    @csrf
+    <div class="container">
+        <div class="card-body">
+            @if (session('success'))
+                <div class="alert alert-info" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-                    <div class="card-body">
-                        @if (session('success'))
-                            <div class="alert alert-info" role="alert">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <div class="row">
                 <div class="col-lg-8">
                     <h2 class="mb-6">Car Detail</h2>
 
-
                     <div class="mb-8">
                         <div class="row">
-                            <input type="hidden" name="user_id" value="{{ old('user_id', $userId) }}">
-                            <input type="hidden" name="car_id" value="{{ old('car_id', $cars->id) }}">
+                            <input type="hidden" name="user_id" value="{{ session('reservation.user_id', old('user_id', $userId)) }}">
+                            <input type="hidden" name="car_id" value="{{$cars->id)}}">
                             <input type="hidden" name="status" value="pending">
                             <div class="col-6 form-group">
                                 <label>Model</label>
                                 <input type="text" class="form-control p-4" value="{{ $cars->model }}" readonly>
                             </div>
-                            
                             <div class="col-6 form-group">
                                 <label>Email</label>
                                 <input type="text" class="form-control p-4" value="{{ $cars->email }}" readonly>
                             </div>
                         </div>
-                        
                         <div class="row">
                             <div class="col-6 form-group">
                                 <label>Phone No</label>
@@ -159,95 +156,89 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <h2 class="mb-4">Personal Detail</h2>
                     <div class="mb-5">
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" name="fname" class="form-control p-4" placeholder="First Name" value="{{ old('fname') }}" required>
+                                <input type="text" name="fname" class="form-control p-4" placeholder="First Name" value="{{ session('reservation.fname', old('fname')) }}" required>
                                 @error('fname')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" name="lname" class="form-control p-4" placeholder="Last Name" value="{{ old('lname') }}" required>
+                                <input type="text" name="lname" class="form-control p-4" placeholder="Last Name" value="{{ session('reservation.lname', old('lname')) }}" required>
                                 @error('lname')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-                        
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="email" name="email" class="form-control p-4" placeholder="Your Email" value="{{ old('email') }}" required>
+                                <input type="email" name="email" class="form-control p-4" placeholder="Your Email" value="{{ session('reservation.email', old('email')) }}" required>
                                 @error('email')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-6 form-group">
-                                
-                                <input type="text" name="phone" class="form-control p-4" placeholder="Mobile Number" value="{{ old('phone') }}" required>
+                                <input type="text" name="phone" class="form-control p-4" placeholder="Mobile Number" value="{{ session('reservation.phone', old('phone')) }}" required>
                                 @error('phone')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
                     </div>
-                    
+
                     <h2 class="mb-4">Booking Detail</h2>
                     <div class="mb-5">
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" name="pickup" class="form-control p-4" placeholder="Pickup Location" value="{{ old('pickup') }}" required>
+                                <input type="text" name="pickup" class="form-control p-4" placeholder="Pickup Location" value="{{ session('reservation.pickup', old('pickup')) }}" required>
                                 @error('pickup')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" name="destination" class="form-control p-4" placeholder="Destination Location" value="{{ old('destination') }}" required>
+                                <input type="text" name="destination" class="form-control p-4" placeholder="Destination Location" value="{{ session('reservation.destination', old('destination')) }}" required>
                                 @error('destination')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-    
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" name="date" class="form-control p-4" placeholder="Pickup Date" value="{{ old('date') }}" required>
+                                <input type="text" name="date" class="form-control p-4" placeholder="Pickup Date" value="{{ session('reservation.date', old('date')) }}" required>
                                 @error('date')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" name="time" class="form-control p-4" placeholder="Pickup Time" value="{{ old('time') }}" required>
+                                <input type="text" name="time" class="form-control p-4" placeholder="Pickup Time" value="{{ session('reservation.time', old('time')) }}" required>
                                 @error('time')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-                        
                         <div class="row">
                             <div class="col-6 form-group">
-                                <input type="text" name="age" class="form-control p-4" placeholder="Age" value="{{ old('age') }}" required>
+                                <input type="text" name="age" class="form-control p-4" placeholder="Age" value="{{ session('reservation.age', old('age')) }}" required>
                                 @error('age')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="col-6 form-group">
-                                <input type="text" name="citizen_id" class="form-control p-4" placeholder="Insert your citizenship ID" value="{{ old('citizen_id') }}" required>
+                                <input type="text" name="citizen_id" class="form-control p-4" placeholder="Insert your citizenship ID" value="{{ session('reservation.citizen_id', old('citizen_id')) }}" required>
                                 @error('citizen_id')
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
                         </div>
-    
+
                         <div class="form-group">
                             <label for="image">Upload Your Citizenship Photo</label>
-
-                                <div class="card" style="width: 12rem; height: 10rem">
-                            <img id="showImage" class="card-img-top" alt="" width="100ex" height="150ex">
-                                </div>
-                          
+                            <div class="card" style="width: 12rem; height: 10rem">
+                                <img id="showImage" class="card-img-top" alt="" width="100ex" height="150ex">
+                            </div>
                             <input type="file" class="form-control-file" id="image" name="citizen_image" width="100px">
                             @error('citizen_image')
                                 <span class="text-danger">{{ $message }}</span>
@@ -255,43 +246,46 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-4">
                     <div class="bg-secondary p-5 mb-5">
                         <h2 class="text-primary mb-4">Payment</h2>
-                        
+
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" value="Stripe" id="stripe">
+                                <input type="radio" class="custom-control-input" name="payment" value="Stripe" id="stripe" {{ session('reservation.payment') == 'Stripe' ? 'checked' : (old('payment') == 'Stripe' ? 'checked' : '') }}>
                                 <label class="custom-control-label" for="stripe">Stripe</label>
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" value="Direct Check" id="directcheck">
+                                <input type="radio" class="custom-control-input" name="payment" value="Direct Check" id="directcheck" {{ session('reservation.payment') == 'Direct Check' ? 'checked' : (old('payment') == 'Direct Check' ? 'checked' : '') }}>
                                 <label class="custom-control-label" for="directcheck">Direct Check</label>
                             </div>
                         </div>
-                        
+
                         <div class="form-group mb-4">
                             <div class="custom-control custom-radio">
-                                <input type="radio" class="custom-control-input" name="payment" value="Bank Transfer" id="banktransfer">
+                                <input type="radio" class="custom-control-input" name="payment" value="Bank Transfer" id="banktransfer" {{ session('reservation.payment') == 'Bank Transfer' ? 'checked' : (old('payment') == 'Bank Transfer' ? 'checked' : '') }}>
                                 <label class="custom-control-label" for="banktransfer">Bank Transfer</label>
                             </div>
                         </div>
-    
+
                         @error('payment')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
-    
+
                         <button type="submit" class="btn btn-block btn-primary py-3">Reserve Now</button>
                     </div>
+                    <a href="" class="btn btn-danger pl-4 ml-5">Cancel Booking</a>
                 </div>
             </div>
         </div>
-    </form>
-    
+    </div>
+</form>
+
+
 </div>
     </div>
 </div>

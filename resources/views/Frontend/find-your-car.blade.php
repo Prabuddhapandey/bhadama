@@ -7,7 +7,7 @@
   <div class="container-fluid bg-white pt-3 px-lg-5">
   <div class="row mx-n2" @style('padding-left:60em;')>
     <div class="col-xl-6 col-lg-4 col-md-6 px-2">
-        <input type="text" name="location" class="form-control px-4 mb-3" style="height: 50px;" placeholder="Pickup Location">
+        <input type="text" name="location" class="form-control px-4 mb-3" style="height: 50px;" placeholder="Search by  Location">
     </div>
     {{-- <div class="col-xl-4 col-lg-4 col-md-6 px-2">
         <select type="text" class="form-control px-4 mb-3" name="model" style="height: 50px;" placeholder="Select A Car" required="required">
@@ -28,19 +28,35 @@
 
 <hr>
 <div class="container-fluid bg-white px-lg-5">
-    <div class="row mx-n2" @style('padding-left:60em;')>
-      
-      <div class="col-xl-5 col-lg-4 col-md-6 px-2">
+    <div class="row mx-n2" @style('padding-left:50em;')>
+
+        <div class="col-xl-4 col-lg-4 col-md-6 px-2">
+            <select type="text" class="form-control px-4 mb-3" name="type" id="type" style="height: 50px;" placeholder="Select A Car" required="required">
+                <option value="">Select a Type</option>
+                <option value="">Select a Type</option>
+                <option value="Sedan">Sedan</option>
+                <option value="SUV">SUV</option>
+                <option value="Minivan">Minivan</option>
+                <option value="Convertible">Convertible</option>
+                <option value="Sports">Sports</option>
+                <option value="Wagon">Wagon</option>
+                <option value="Coupe">Coupe</option>
+            </select>
+        </div>
+ 
+      <div class="col-xl-4 col-lg-4 col-md-6 px-2">
           <select type="text" class="form-control px-4 mb-3" name="model" id="model" style="height: 50px;" placeholder="Select A Car" required="required">
               <option value="">Select a model</option>
-
-              @foreach($cars as $item)
-              <option value="{{$item->model}}">{{$item->model}}</option>
-              @endforeach
-              
+              <option value="">Select a Model</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Honda">Honda</option>
+              <option value="Ford">Ford</option>
+              <option value="Chevrolet">Chevrolet</option>
+              <option value="BMW">BMW</option>
+              <option value="Mercedes-Benz">Mercedes-Benz</option>    
           </select>
       </div>
-      <div class="col-xl-5 col-lg-4 col-md-6 px-2">
+      <div class="col-xl-4 col-lg-4 col-md-6 px-2">
           <button class="btn btn-info btn-block mb-3"   type="submit" style="height: 50px;">filter by category</button>
       </div>
   </div>
@@ -92,32 +108,35 @@ $(document).ready(function() {
 });
 
 $(document).ready(function() {
-  $('#model').change(function() { // Use onchange event
-    var selectedModel = $(this).val();
+    function fetchCars() {
+        var selectedType = $('#type').val() || '';
+        var selectedModel = $('#model').val() || '';
 
-    $.ajax({
-      url: '{{ route('search.cars') }}', // Replace with your actual route for filtering
-      type: 'GET',
-      dataType: 'json',
-      data: { model: selectedModel }, // Send the selected model
-      success: function(response) {
-        console.log('AJAX success:', response);
-
-         if (response.html) {
+        $.ajax({
+            url: '{{ route('search.cars') }}',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                type: selectedType,
+                model: selectedModel
+            },
+            success: function(response) {
+                console.log('AJAX success:', response);
+                if (response.html) {
                     $('#car-container').html(response.html);
-                  
-        } else {
-          console.error('Unexpected response format:', response);
-        }
-      },
-      error: function(xhr, status, error) {
-        console.error('AJAX error:', xhr.status, status, error);
-      }
-    });
-  });
-});
- 
+                } else {
+                    console.error('Unexpected response format:', response);
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error:', xhr.status, status, error);
+            }
+        });
+    }
 
+    $('#type').change(fetchCars);
+    $('#model').change(fetchCars);
+});
 </script>
 
 @endsection

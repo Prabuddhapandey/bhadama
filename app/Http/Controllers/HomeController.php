@@ -6,10 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\File;
-
 use Illuminate\Support\Facades\Auth;
 use App\Models\ListCar;
-
+use Illuminate\Support\Facades\Session;
 
 use App\Models\User;
 
@@ -17,8 +16,9 @@ class Homecontroller extends Controller
 {
     public function index(Request $request)
     {
-         $cars = ListCar::paginate(6);
-          
+
+        $userId = Auth::id();
+         $cars = ListCar::paginate(6);   
         if($request->ajax())
         {
                 return response()->json([
@@ -44,17 +44,17 @@ class Homecontroller extends Controller
     }
     public function Findcars(Request $request)
     {
-        $perPage = 6; // Items per page (you can adjust this)
-
+        $userId = Auth::id();
+        $perPage = 6; 
         $selectedModel = $request->get('model');
-
-        $carsQuery = ListCar::query(); // Start with a clean query
+        $carsQuery = ListCar::query();
+                    //  ->whereNot('user_id',$userId); 
 
         if ($selectedModel) {
-            $carsQuery->where('model', $selectedModel); // Filter by model if selected
+            $carsQuery->where('model', $selectedModel); 
         }
 
-        $cars = $carsQuery->paginate($perPage); // Apply pagination
+        $cars = $carsQuery->paginate($perPage); 
 
         if ($request->ajax()) {
             return response()->json([
@@ -81,9 +81,11 @@ class Homecontroller extends Controller
     public function booking($id)
 
     {
+
+        $reservation = Session::get('reservation');
         $cars=ListCar::findOrFail($id);
-    
-        return view('Frontend.booking',compact('cars'));
+
+        return view('Frontend.booking',compact(['cars', 'reservation' ]));
 
     }
 

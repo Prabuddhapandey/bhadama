@@ -44,18 +44,23 @@ public function postsearch(Request $request)
 
 public function searchCars(Request $request)
 {
-    
-  
-    $selectedModel = $request->get('model');
+    $type = $request->get('type');
+    $model = $request->get('model');
 
-    // Implement your logic to filter cars based on $selectedModel
-    $cars = ListCar::where('model', $selectedModel)->get(); // Example
+    $query = ListCar::query();
 
-    // Alternatively, use query scopes or other filtering techniques
+    if ($type) {
+        $query->where('type', $type);
+    }
+
+    if ($model) {
+        $query->where('model', $model);
+    }
+
+    $cars = $query->get();
 
     return response()->json([
         'html' => view('frontend.components.FindYourCar', compact('cars'))->render(),
-       // 'pagination' => $cars->links('vendor.pagination.bootstrap-4'), // Render the component with filtered cars
     ]);
 }
 }

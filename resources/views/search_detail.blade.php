@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="d-flex">
                                     <a href="#" class="btn btn-primary py-2 mr-2">Book now</a>
-                                    <a href="{{url('/detail',[$result->id])}}" class="btn btn-secondary py-2">Details</a>
+                                    <a href="{{url('/detail',[$result->id])}}" class="btn btn-secondary py-2">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,8 @@
                 @foreach ($recommendedCars as $item)
                 <div class="col-md-4 mb-4">
                     <div class="rent-item">
-                        @if($item->image)
+                  
+                       @if(!Empty($item->image)) 
                         <img class="img-fluid mb-3" src="{{ url('uploads/listcars/', $item->image) }}" alt="{{$item->model}}">
                         @else
                         <img class="img-fluid mb-3" src="{{ asset('asset/img/images.jpeg') }}" alt="{{ $item->model }}">

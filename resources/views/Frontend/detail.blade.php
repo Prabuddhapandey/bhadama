@@ -34,6 +34,12 @@
                             {{-- <img class="img-fluid w-100" src="{{asset('uploads/listcars/'.($cars->image) )?? ''}}" width="200px" height="200px"  alt=""> --}}
                         </div>
                     </div>
+
+                    <div class="col-md-3 col-6 mb-2">
+                        <i class="text-primary mr-2"></i>
+                       <span>Type:{{$cars->type}} </span>
+                    </div>
+
                     <div class="col-md-3 col-6 mb-2">
                         <i class="text-primary mr-2"></i>
                        <span>Location:{{$cars->location}} </span>
@@ -50,7 +56,7 @@
                     <div class="row pt-2">
                         <div class="col-md-3 col-6 mb-2">
                             <i class="fa fa-car text-primary mr-2"></i>
-                            <span>Model: latest</span>
+                            <span>Model: {{$cars->model}}</span>
                         </div>
                         <div class="col-md-3 col-6 mb-2">
                             <i class="fa fa-cogs text-primary mr-2"></i>
@@ -84,7 +90,7 @@
                        
                         <div class="form-group">
                             <div class="time" id="time1" data-target-input="nearest">
-                                <input type="text" class="form-control p-4 datetimepicker-input" placeholder="{{$cars->time}}"
+                                <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Time"
                                     data-target="#time1" data-toggle="datetimepicker" />
                             </div>
                         </div>

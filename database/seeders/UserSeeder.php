@@ -13,9 +13,11 @@ class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     */
+     */ 
+
     public function run(): void
-    {
+    { 
+        User::truncate();
         User::create([
             'name'=>'admin',
             'email'=>'admin@admin.com',

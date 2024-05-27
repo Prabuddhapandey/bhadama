@@ -17,20 +17,24 @@ class MyCartController extends Controller
 
         if(Auth::check())
         {
-           $this->_data['cars'] = Booking::leftJoin(
-                                   'list_cars','list_cars.id','bookings.car_id')
-                                   ->select(
-                                    'bookings.*',
-                                     'list_cars.model as model')
-                                   ->where('user_id', $userId)
-                                   ->where('status','pending')
-                                     ->get();
+                $this->_data['cars'] = Booking::leftJoin(
+                    'list_cars', 'list_cars.id', '=', 'bookings.car_id'
+                )
+                ->select(
+                    'bookings.*',
+                    'list_cars.model as model'
+                )
+                ->where('bookings.user_id', $userId) // Specify the table for user_id
+                ->where('status', 'pending')
+                ->get();
+            
+
         //    dd($this->_data['cars']);
             $this->_data['sum'] = Booking::leftJoin('list_cars','list_cars.id','bookings.car_id')
                            ->select(
                             'status',
                             'price'
-                           )->where('user_id',$userId)->where('status','pending')->pluck('price')->sum();
+                           )->where('bookings.user_id',$userId)->where('status','pending')->pluck('price')->sum();
                
                         //    dd( $this->_data['sum']);
        

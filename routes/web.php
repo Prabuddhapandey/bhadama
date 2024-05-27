@@ -52,7 +52,9 @@ Route::get('/team',[Homecontroller::class,'team']);
 Route::get('/testimonial',[Homecontroller::class,'testimonial']);
 Route::get('/detail',[Homecontroller::class,'detail']);
 Route::get('/detail/{id}',[Homecontroller::class,'detail']);
-Route::get('/booking/{id}',[Homecontroller::class,'booking']);
+
+Route::get('/booking/{id}',[BookingController::class,'booking']);
+
 Route::get('/search', [SearchController::class, 'search']);
 
 Route::get('/search-cars', [SearchController::class, 'searchCars'])->name('search.cars');

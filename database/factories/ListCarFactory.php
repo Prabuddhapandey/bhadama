@@ -19,6 +19,8 @@ class ListCarFactory extends Factory
         return [
             //
             'model' => $this->faker->randomElement(['Toyota', 'Honda', 'Ford', 'Chevrolet', 'BMW', 'Mercedes-Benz']),
+            
+            'type' => $this->faker->randomElement(['Sedan', 'SUV', 'Minivan', 'Convertible', 'Sports', 'Wagon','Coupe']),
 
            'fname' => $this->faker->randomElement([ 'Andrew','Amelia','Charlotte','Christopher','Evelyn','David','Michael','William','Matthew','Christopher',  'Andrew', 'Matthew',]),
 

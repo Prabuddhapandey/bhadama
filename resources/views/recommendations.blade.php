@@ -19,7 +19,7 @@
                 @foreach ($recommendedCars as $item)
                 <div class="col-md-4 mb-4">
                     <div class="rent-item">
-                        @if($item->image)
+                        @if(!Empty($item->image)) 
                         <img class="img-fluid mb-3" src="{{ url('uploads/listcars/', $item->image) }}" alt="{{$item->model}}">
                         @else
                         <img class="img-fluid mb-3" src="{{ asset('asset/img/images.jpeg') }}" alt="{{ $item->model }}">

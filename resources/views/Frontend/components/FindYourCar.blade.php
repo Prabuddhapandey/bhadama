@@ -8,19 +8,20 @@
                 <div class="col-md-4 mb-4">
                     <div class="rent-item">
                         @if(!Empty($item->image))   
-                        <img  src="{{url('/uploads/listcars/'.$item->image )}}"  alt="Image" width="300px" height="200px>
+                        <img  src="{{url('/uploads/listcars/'.$item->image )}}"  alt="Image" width="300px" height="200px">
                         @else
                         <img  src="{{asset('asset/img/images.jpeg')}}"  alt="Image" width="200px" height="200px">
                          @endif
                         <div class="text">
                             <h4 class="text-uppercase mb-2">{{$item->model}}</h4>
                             <div class="d-flex mb-3">
-                                <span class="cat">{{$item->date}}</span>
+                                <p class="cat">{{$item->type}}</p>
+                                <span class="ml-3">{{$item->date}}</span>
                                 <p class="price ml-auto">RS: {{$item->price}}<span>/day</span></p>
                             </div>
                             <div class="d-flex">
                                 <a href="{{url('/detail',[$item->id])}}" class="btn btn-primary py-2 mr-2">Book now</a>
-                                <a href="{{url('/detail',[$item->id])}}" class="btn btn-secondary py-2">Details</a>
+                                {{-- <a href="{{url('/detail',[$item->id])}}" class="btn btn-secondary py-2">Details</a> --}}
                             </div>
                         </div>
                     </div>

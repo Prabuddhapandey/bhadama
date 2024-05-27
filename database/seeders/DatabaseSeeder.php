@@ -27,8 +27,6 @@ class DatabaseSeeder extends Seeder
         RatingSeeder::class,
         ListCarSeeder::class,
         UserSeeder::class,
-        BookingSeeder::class,
-
     ]);
     }
 

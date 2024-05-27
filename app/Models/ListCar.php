@@ -21,6 +21,8 @@ class ListCar extends Model
         'time',
         'image',
         'price',
+        'type',
+        'user_id',
         
         
 
