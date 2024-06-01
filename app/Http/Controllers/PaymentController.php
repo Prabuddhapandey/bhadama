@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
+use Stripe\Charge;
+use Stripe\Stripe;
+use Stripe\Customer;
 use App\Models\Booking;
 use App\Models\Payment;
-use Stripe\Stripe;
-use Validator;
-use Illuminate\Support\Facades\Log;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
 {
@@ -21,7 +25,7 @@ class PaymentController extends Controller
         $amount=$request->amount;
         $token= $request->token;
         $args = http_build_query(array(
-            'token' => $requesr->token,
+            'token' => $request->token,
             'amount'  => 10000
           ));
           
@@ -65,7 +69,7 @@ public function storePayment(Request $request)
        $this->_data['data'] = Booking::leftJoin('list_cars','list_cars.id','bookings.car_id')
                            ->select(
                         'price'
-                           )->where('user_id',$userId)->where('status','=','pending')->pluck('price')->sum();
+                           )->where('bookings.user_id',$userId)->where('status','=','pending')->pluck('price')->sum();
 
         $this->_data['mail'] = Booking::where('user_id',$userId)->first('email');
                         
@@ -85,7 +89,8 @@ public function storePayment(Request $request)
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
-             $stripeKey = env('STRIPE_SECRET');
+             $stripeKey = ('sk_test_51PJYTZRvbwsKW9FjuPvK9CZOiqO8RRBHd22BshrBiz5oBnrbsfyqQq5Irg4qNVL0KD8vrUGYIjYX29BiDU2wagOq00jcxrtwMO');
+
             Stripe::setApiKey($stripeKey);
     
         try {
@@ -108,8 +113,8 @@ public function storePayment(Request $request)
             ]);
     
             // Update the booking status to "paid"
-            // $userId = Auth::id();
-            // Booking::where('user_id', $userId)->where('status', 'pending')->update(['status' => 'paid']);
+            $userId = Auth::id();
+            Booking::where('user_id', $userId)->where('status', 'pending')->update(['status' => 'paid']);
     
             return response()->json(['success' => 'Payment was successful']);
         } catch (\Exception $e) {

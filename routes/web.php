@@ -42,31 +42,27 @@ Route::get('/index',[Homecontroller::class,'index']);
 
 
 
-Route::get('/service',[Homecontroller::class,'service']);
-Route::get('/about',[Homecontroller::class,'about']);
+// Route::get('/service',[Homecontroller::class,'service']);
+// Route::get('/about',[Homecontroller::class,'about']);
 Route::get('/car',[Homecontroller::class,'cars'])->name('post.cars');
 // Route::get('/find/your/car',[Homecontroller::class,'findcars']);
-Route::get('/page',[Homecontroller::class,'pages']);
-Route::get('/contact',[Homecontroller::class,'contact']);
-Route::get('/team',[Homecontroller::class,'team']);
-Route::get('/testimonial',[Homecontroller::class,'testimonial']);
+
+
 Route::get('/detail',[Homecontroller::class,'detail']);
-Route::get('/detail/{id}',[Homecontroller::class,'detail']);
+Route::get('/detail/{id}',[Homecontroller::class,'detail'])->name('cars.detail');
 
-Route::get('/booking/{id}',[BookingController::class,'booking']);
-
-Route::get('/search', [SearchController::class, 'search']);
+Route::get('/booking/{id}',[BookingController::class,'booking'])->name('car.getBooking');
 
 Route::get('/search-cars', [SearchController::class, 'searchCars'])->name('search.cars');
 
 Route::post('/store/user',[Homecontroller::class,'StoreUser'])->name('store.user');
-Route::post('/booking/store/',[BookingController::class,'bookStore'])->name('booking.store');
+Route::post('/booking_store',[BookingController::class,'bookStore'])->name('booking.store');
 
 
 Route::middleware(['auth'])->group(function () 
 {
-    Route::get('/booking/{id}',[Homecontroller::class,'booking']);
-    Route::get('/find/your/car',[Homecontroller::class,'findcars'])->name('find.cars');
+    Route::get('/booking/{id}',[Homecontroller::class,'booking'])->name('car.getBooking');
+    Route::get('/find_your_car',[Homecontroller::class,'findcars'])->name('find.cars');
     Route::get('/searchs',[SearchController::class, 'postsearch'])->name('search');
     
     Route::get('/rating/{id}',[RatingController::class, 'index']);
@@ -82,8 +78,8 @@ Route::middleware(['auth'])->group(function ()
 
     Route::get('echo', [UserController::class, 'echo']);
     Route::get('echo/{id}', [UserController::class, 'echoDetail']);
-Route::get('user/logout', [UserController::class, 'userLogout']);
-Route::post('/list/car',[UserController::class,'listCar']);
+Route::get('user/logout', [UserController::class, 'userLogout'])->name('user.logout');
+Route::post('/list_car',[UserController::class,'listCar'])->name('car.store');
 Route::get('/recommendations/{userId}',[RecommendationController::class,'recommendCars']);
 
 Route::post('/khalti/payment/verify',[PaymentController::class,'verifyPayment'])->name('khalti.verifyPayment');

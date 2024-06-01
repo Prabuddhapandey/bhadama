@@ -52,7 +52,7 @@
                         
                         <a href="{{url('/')}}" class="nav-item nav-link">Home</a>
                         
-                        <a href="{{url('/find/your/car')}}" class="nav-item nav-link ">Book Cars</a>
+                        <a href="{{route('find.cars')}}" class="nav-item nav-link ">Book Cars</a>
                         {{-- <a href="{{url('/about')}}" class="nav-item nav-link ">About US</a> --}}
                        
                         <div class="nav-item dropdown">
@@ -75,7 +75,7 @@
                     @if(auth()->check())
                     <div>
                         @if(auth()->user()->role == '0')
-                        <a href="{{url('/admin/home')}}" class="nav-item nav-link">Dashboard</a>
+                        <a href="{{route('admin.home')}}" class="nav-item nav-link">Dashboard</a>
                         @endif
                     </div>
 
@@ -95,14 +95,14 @@
                         <div class="dropdown-menu" aria-labelledby="userDropdown">
                            
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{ url('/user/logout') }}">Logout</a>
+                            <a class="dropdown-item" href="{{ route('user.logout') }}">Logout</a>
                         </div>
                     </div>
                 
                 
                     @else
                     <div>
-                    <a href="{{url('/login')}}" class="nav-item nav-link">Login</a>
+                    <a href="{{route('login')}}" class="nav-item nav-link">Login</a>
                     </div>
                     @endif
                       

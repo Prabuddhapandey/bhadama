@@ -20,7 +20,7 @@
                                 <p class="price ml-auto">RS: {{$item->price}}<span>/day</span></p>
                             </div>
                             <div class="d-flex">
-                                <a href="{{url('/detail',[$item->id])}}" class="btn btn-primary py-2 mr-2">Book now</a>
+                                <a href="{{route('cars.detail',[$item->id])}}" class="btn btn-primary py-2 mr-2">Book now</a>
                                 {{-- <a href="{{url('/detail',[$item->id])}}" class="btn btn-secondary py-2">Details</a> --}}
                             </div>
                         </div>

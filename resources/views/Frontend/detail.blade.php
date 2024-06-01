@@ -89,6 +89,7 @@
 
                        
                         <div class="form-group">
+                    <label >Time</label>
                             <div class="time" id="time1" data-target-input="nearest">
                                 <input type="text" class="form-control p-4 datetimepicker-input" placeholder="Time"
                                     data-target="#time1" data-toggle="datetimepicker" />

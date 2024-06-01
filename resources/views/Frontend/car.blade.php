@@ -17,7 +17,7 @@
    
      
 <!-- Car Booking Start -->
-<form class="container-fluid pb-5" action="{{ url('/list/car') }}" method="post" enctype="multipart/form-data">
+<form class="container-fluid pb-5" action="{{ route('car.store') }}" method="post" enctype="multipart/form-data">
     @csrf
     <div class="container">
         <div class="row">

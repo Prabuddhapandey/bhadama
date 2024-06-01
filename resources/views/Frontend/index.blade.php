@@ -149,7 +149,7 @@
 $(document).ready(function() {
     $(document).on('click', '.pagination a', function(e) {
         e.preventDefault();
-        var url = '{{url('cars\ajax')}}' // Get the pagination link URL
+        var url = '{{route('cars.ajax')}}' // Get the pagination link URL
         fetchPage(url);
     });
 

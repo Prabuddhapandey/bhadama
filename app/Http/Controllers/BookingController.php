@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use App\Models\Booking;
-use Illuminate\Support\Facades\Validator;
 use Mail;
 use App\Models\User;
-use Illuminate\Support\Facades\Session;
-
-use Illuminate\Support\Facades\Auth;
 use App\Mail\AdminMail;
+use App\Models\Booking;
+use App\Models\ListCar;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 
 class BookingController extends Controller

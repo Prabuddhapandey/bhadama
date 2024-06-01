@@ -107,7 +107,7 @@
     
    <!-- Car Booking Start -->
 <!-- Car Booking Start -->
-<form class="container-fluid pb-5" method="post" action="{{ url('/booking/store/') }}" enctype="multipart/form-data">
+<form class="container-fluid pb-5" method="post" action="{{ route('booking.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="container">
         <div class="card-body">
