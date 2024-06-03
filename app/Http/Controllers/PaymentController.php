@@ -89,7 +89,7 @@ public function storePayment(Request $request)
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 422);
         }
-             $stripeKey = ('sk_test_51PJYTZRvbwsKW9FjuPvK9CZOiqO8RRBHd22BshrBiz5oBnrbsfyqQq5Irg4qNVL0KD8vrUGYIjYX29BiDU2wagOq00jcxrtwMO');
+             $stripeKey = ('');
 
             Stripe::setApiKey($stripeKey);
     
